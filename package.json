@@ -1,0 +1,21 @@
+{
+  "name": "java-vs-python",
+  "description": "Mining GitHub repositories",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/marlonhenrys/java-vs-python",
+  "author": "Marlon Henrique",
+  "license": "MIT",
+  "scripts": {
+    "mine": "node index.js --mine",
+    "analyze": "node index.js --analyze"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "download-git-repo": "^3.0.2",
+    "minimist": "^1.2.5",
+    "neat-csv": "^5.2.0",
+    "objects-to-csv": "^1.3.6"
+  }
+}
