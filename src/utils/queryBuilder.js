@@ -1,7 +1,7 @@
 module.exports = {
-    findAll: (limit, cursor) => `
+    findAll: (limit, cursor, languageName) => `
         {
-            search(type: REPOSITORY, query: "stars:>10000 language:Java language:Python", first: ${limit}, after: ${cursor}) {
+            search(type: REPOSITORY, query: "stars:>10000 language:${languageName}", first: ${limit}, after: ${cursor}) {
                 pageInfo {
                     hasNextPage
                     endCursor
@@ -33,11 +33,8 @@ module.exports = {
                 stargazers {
                     totalCount
                 }
-                releases(first: 100) {
+                releases {
                     totalCount
-                    nodes {
-                        publishedAt
-                    }
                 }
                 watchers{
                     totalCount

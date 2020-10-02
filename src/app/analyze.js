@@ -18,7 +18,8 @@ module.exports = async params => {
             const node = await fetch.one(params)
 
             if (node) {
-                await analysis(params)
+                // await analysis(params)
+                // - this function will download and collect metrics from the repository
 
                 const formattedNode = format.one(node)
 

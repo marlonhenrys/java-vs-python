@@ -2,17 +2,13 @@ const axios = require('axios')
 const queryBuilder = require('../utils/queryBuilder')
 const { endpoint, options, variables } = require('../config/request')
 
-const progress = (totalCount, filters) => {
-    const diff = index => totalCount / 2 - filters[index].count
-    return `${filters[0].value}: ${diff(0)} | ${filters[1].value}: ${diff(1)}`
-}
-
 module.exports = {
-    list: async ({ cursor, perPage, totalCount, filters }) => {
+    list: async ({ cursor, perPage, language, count }) => {
+        
         const after = cursor ? `"${cursor}"` : null
-        const query = queryBuilder.findAll(perPage, after)
+        const query = queryBuilder.findAll(perPage, after, language.name)
 
-        console.log('\nBuscando dados... ' + `(${progress(totalCount, filters)})`)
+        console.log('\nBuscando dados... ' + `${language.name}: ${count}/${language.amount}`)
 
         const response = await axios.post(endpoint, { query, variables }, options)
         const { nodes, pageInfo } = response.data.data.search

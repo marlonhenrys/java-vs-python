@@ -7,6 +7,7 @@
   "author": "Marlon Henrique",
   "license": "MIT",
   "scripts": {
+    "start": "node index.js --mine -n Java -a 100 && node index.js --mine -n Python -a 100 && node index.js --analyze",
     "mine": "node index.js --mine",
     "analyze": "node index.js --analyze"
   },
