@@ -20,7 +20,7 @@ ou
 $ npm install
 ```
 
-#### Abra o arquivo `.env` na raiz do projeto e insira um valor para a variável `ACCESS_TOKEN`.
+#### Crie um arquivo `.env` na raiz do projeto e insira um valor para a variável `ACCESS_TOKEN`.
 
 ```bash
 ACCESS_TOKEN=abc123token456example
