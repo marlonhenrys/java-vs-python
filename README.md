@@ -2,9 +2,15 @@
 
 ### GitHub API (v4) | GraphQL
 
+#### Comparativo entre os 100 repositórios Java e Python mais populares.
+
 Os dados são coletados da API do GitHub, em seguida são processados (para formatações e cálculos) e finalmente salvos em um arquivo `.csv` na pasta `files`.
 
-Há um arquivo `repos.csv` dentro da pasta com os resultados da mineração.
+- Há um arquivo `repos.csv` dentro da pasta com os resultados da mineração.
+
+Em um segundo momento a lista de repositórios é carregada do arquivo anterior e é realizada uma análise sobre cada repositório. São coletados mais dados da API, depois os repositórios são baixados para que uma ferramenta colete métricas do código, em seguida a cópia do repositório é excluída e todos os dados coletados são processados e salvos em um arquivo `analysis.cvs`.
+
+- Há um arquivo `analysis.csv` dentro da pasta `files` com os resultados das análises.
 
 ## Instruções
 
@@ -28,7 +34,7 @@ ACCESS_TOKEN=abc123token456example
 
 > **OBS:** Este deve ser o seu token de acesso pessoal gerado pelo GitHub nas configurações de desenvolvedor.
 
-#### Para iniciar a mineração de dados utilize o comando:
+#### Para iniciar a mineração e análise dos repositórios utilize o comando:
 
 ```bash
 $ yarn start
@@ -40,38 +46,30 @@ ou
 $ npm start
 ```
 
-#### São aceitos alguns parâmetros como:
+#### Execução manual:
 
-- Quantidade de registros por página (limit)
-- Nome do arquivo `.csv` que será criado (filename)
+Executando separadamente os comandos de mineração (mine) e análise (analyze) é possível passar alguns parâmetros para cada um deles. São eles:
 
-#### Os valores padrões de cada parâmetro são:
+##### Obrigatórios:
+
+- Nome da linguagem primária dos repositórios que serão coletados (name) `only mine`
+- Quantidade de repositórios que serão coletados pela linguagem (amount) `only mine`
+
+##### Opcionais:
+
+- Nome do arquivo `.csv` que será criado (filename) `both`
+- Quantidade de registros por página (limit) `only mine`
+- Nome do arquivo que contém a lista de repositórios a serem analisados (storage) `only analyze`
+- Linha da lista de onde as análises irão começar (initial) `only analyze`
+
+##### Valores padrões:
 
 ```js
-limit = 10
-filename = 'repos' || 'analysis'
-```
+name = 'Java' && 'Python'
+amount = 100
 
-> **OBS:** Estes parâmetros são opcionais.
-
-## Exemplos
-
-#### Esta é a saída do terminal para cada requisição realizada com sucesso:
-
-```bash
-Buscando dados... Progresso: 1/100
-
-Formatando dados...
-Salvando no arquivo...
-
-Dados coletados.
-```
-
-#### Esta é a saída do terminal para cada requisição que falhar:
-
-```bash
-Buscando dados... Progresso: 1/100
-Request failed with status code 502
-
-Tentando novamente...
+limit = 100
+filename = 'repos' && 'analysis'
+storage = 'repos'
+initial = 2
 ```
