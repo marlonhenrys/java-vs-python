@@ -5,25 +5,21 @@ const { red, green, yellow } = require('../config/console')
 const analysis = require('../helpers/analysis')
 
 module.exports = async params => {
-
     const repos = await file.read(params.storage)
+    let index = params.initial
 
-    for (let index = 0; index < repos.length; index++) {
+    for (index; index < repos.length; index++) {
 
         try {
             const [owner, name] = repos[index].nameWithOwner.split('/')
-
             Object.assign(params, { owner, name })
-
             const node = await fetch.one(params)
 
             if (node) {
-                // await analysis(params)
-                // - this function will download and collect metrics from the repository
+                const metrics = await analysis(node)
+                const formattedData = format.one(node, metrics)
 
-                const formattedNode = format.one(node)
-
-                await file.save([formattedNode], params.filename)
+                await file.save([formattedData], params.filename)
                 console.log(green, '\nDados coletados.')
 
             } else {

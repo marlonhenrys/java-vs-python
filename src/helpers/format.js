@@ -20,8 +20,8 @@ module.exports = {
         })
     },
 
-    one: node => {
-        console.log(blue, '\nProcessando dados...')
+    one: (node, metrics) => {
+        console.log(blue, 'Processando dados...')
 
         const { forkCount } = node
         const nameWithOwner = node.nameWithOwner
@@ -29,16 +29,21 @@ module.exports = {
         const watcherCount = node.watchers.totalCount
         const primaryLanguage = node.primaryLanguage ? node.primaryLanguage.name : 'N/A'
         const lifetime = parseInt(dateDiff(node.createdAt) / 365)
-        const releasesPerDay = (node.releases.totalCount / dateDiff(node.createdAt)).toFixed(3)
+        const releaseCount = node.releases.totalCount
+        const releasesPerDay = (releaseCount / dateDiff(node.createdAt)).toFixed(3)
 
         return {
             'Name with owner': nameWithOwner,
             'Primary language': primaryLanguage,
             'Lifetime (years)': lifetime,
             'Stars': starCount,
+            'Releases': releaseCount,
             'Releases per day': releasesPerDay,
             'Forks': forkCount,
             'Watchers': watcherCount,
+            'LOC': metrics.total || 0,
+            'SLOC': metrics.source || 0,
+            'CLOC': metrics.comments || 0
         }
     }
 }

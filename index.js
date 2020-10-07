@@ -1,4 +1,4 @@
-const { filename, perPage } = require('./src/config/params')
+const { filename, perPage, initial } = require('./src/config/params')
 const mine = require('./src/app/mine')
 const analyze = require('./src/app/analyze')
 const argv = require('minimist')
@@ -9,6 +9,7 @@ const params = {
     perPage: args.l || perPage,
     filename: args.f || args.mine && filename.mine || args.analyze && filename.analyze,
     storage: args.s || filename.mine,
+    initial: args.i ? (args.i - 2) : initial,
     language: {
         name: args.n,
         amount: args.a,

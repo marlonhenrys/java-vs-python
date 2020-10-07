@@ -13,7 +13,7 @@ module.exports = {
     },
 
     read: async filename => {
-        console.log(blue, '\nCarregando lista de repositórios...')
+        console.log('\nCarregando lista de repositórios...')
 
         const file = await fs.readFile(`./files/${filename}.csv`)
 

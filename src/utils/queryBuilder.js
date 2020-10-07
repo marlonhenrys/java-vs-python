@@ -36,8 +36,11 @@ module.exports = {
                 releases {
                     totalCount
                 }
-                watchers{
+                watchers {
                     totalCount
+                }
+                defaultBranchRef {
+                    name
                 }
             }
         }
