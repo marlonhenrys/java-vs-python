@@ -8,7 +8,7 @@ Os dados são coletados da API do GitHub, em seguida são processados (para form
 
 - Há um arquivo `repos.csv` dentro da pasta com os resultados da mineração.
 
-Em um segundo momento a lista de repositórios é carregada do arquivo anterior e é realizada uma análise sobre cada repositório. São coletados mais dados da API, depois os repositórios são baixados para que uma ferramenta colete métricas do código, em seguida a cópia do repositório é excluída e todos os dados coletados são processados e salvos em um arquivo `analysis.cvs`.
+Em um segundo momento, a lista de repositórios é carregada do arquivo anterior e é realizada uma análise sobre cada repositório. São coletados mais dados da API sobre os repositórios, eles são copiados localmente para que uma ferramenta colete métricas do código, a cópia do repositório é excluída e todos os dados coletados são processados e salvos em um arquivo `analysis.csv`.
 
 - Há um arquivo `analysis.csv` dentro da pasta `files` com os resultados das análises.
 
@@ -46,30 +46,30 @@ ou
 $ npm start
 ```
 
-#### Execução manual:
+### Execução manual
 
-Executando separadamente os comandos de mineração (mine) e análise (analyze) é possível passar alguns parâmetros para cada um deles. São eles:
+Executando separadamente os comandos de mineração (mine) e análise (analyze) é possível passar alguns parâmetros para cada um deles.
 
-##### Obrigatórios:
+#### Obrigatórios:
 
 - Nome da linguagem primária dos repositórios que serão coletados (name) `only mine`
 - Quantidade de repositórios que serão coletados pela linguagem (amount) `only mine`
 
-##### Opcionais:
+#### Opcionais:
 
 - Nome do arquivo `.csv` que será criado (filename) `both`
 - Quantidade de registros por página (limit) `only mine`
 - Nome do arquivo que contém a lista de repositórios a serem analisados (storage) `only analyze`
 - Linha da lista de onde as análises irão começar (initial) `only analyze`
 
-##### Valores padrões:
+#### Valores padrões:
 
 ```js
 name = 'Java' && 'Python'
 amount = 100
 
-limit = 100
 filename = 'repos' && 'analysis'
+limit = 100
 storage = 'repos'
 initial = 2
 ```
